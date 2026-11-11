@@ -1,0 +1,24 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "volo-sports-ical",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-11-01",
+  "observability": { "enabled": true },
+
+  // Served only at https://volo.brady.town/calendar.ics (Cloudflare creates the DNS record).
+  "routes": [{ "pattern": "volo.brady.town", "custom_domain": true }],
+  "workers_dev": false,
+  "preview_urls": false,
+
+  // Rebuild the calendar every hour.
+  "triggers": { "crons": ["0 * * * *"] },
+
+  "kv_namespaces": [
+    // No id: wrangler creates the namespace on first deploy and fills it in.
+    { "binding": "VOLO_SPORTS_ICAL" }
+  ]
+
+  // Secrets (set with `npx wrangler secret put <NAME>`; for local dev put them in .dev.vars):
+  //   EMAIL, PASSWORD   - your Volo login
+  //   CALENDAR_TOKEN    - optional; when set, the feed requires ?token=<value>
+}

@@ -1,0 +1,22 @@
+{
+  "name": "volo-sports-ical",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev --test-scheduled",
+    "deploy": "wrangler deploy",
+    "types": "wrangler types",
+    "typecheck": "wrangler types && tsc --noEmit"
+  },
+  "dependencies": {
+    "graphql": "^16.15.0",
+    "graphql-request": "^7.4.0",
+    "ical-generator": "^11.1.3",
+    "ramda": "^0.32.0"
+  },
+  "devDependencies": {
+    "@types/ramda": "^0.32.0",
+    "typescript": "^7.0.2",
+    "wrangler": "^4.160.1"
+  }
+}
